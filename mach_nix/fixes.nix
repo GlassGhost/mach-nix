@@ -108,6 +108,11 @@ rec {
     nativeBuildInputs.add = with pkgs; [ autoconf automake libtool ];
   };
 
+  pyside2.add-native-inputs = {
+    _cond = { prov, ver, ... }: prov != "nixpkgs";
+    buildInputs.add = with pkgs; [ libkrb5 libsForQt5.full ];
+  };
+
   rpy2.remove-pandas-patch = {
     _cond = { prov, ver, ... }:
       # https://github.com/rpy2/rpy2/commit/fbd060e364b70012e8d26cc74df04ee53f769379
